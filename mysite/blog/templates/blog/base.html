@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+
+    <!-- MEDDIUM STYLE TEXT EDITOR -->
+    <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+
+
+
+
+    <!-- CUSTOM CSS -->
+    <link rel="stylesheet" href="{% static 'css/blog.css'%}">
+
+
+
+    <!-- FONTS -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Russo+One&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+  </head>
+  <body class='loader'>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg  bg-light techfont custom-navbar">
+      <div class="container">
+        <ul class=" navbar-nav mr-auto">
+
+
+        <li class="nav-item active"><a class='navbar-brand bigbrand' href="{% url 'post_list' %}">My Blog</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+        <br>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/">Github</a></li>
+        <br>
+        <li class="nav-item"><a class="nav-link" href="https://linkedin.com/">Linkedin</a></li>
+
+      </ul>
+    <ul class=" navbar-nav mr-auto">
+    {% if user.is_authenticated %}
+      <li class="nav-item">
+         <a class="nav-link" href="{% url "post_new" %}">New Post </a>
+      </li>
+      <li class="nav-item">
+         <a class="nav-link" href="{% url "post_draft_list" %}">Drafts </a>
+      </li>
+      <li class="nav-item">
+         <a class="nav-link" href="{% url "logout" %}">Logout </a>
+      </li>
+      <li class="nav-item">
+         <a class="nav-link">Welcome: {{ user.username }}</a>
+      </li>
+
+
+    {% else %}
+    <li class="nav-item">
+       <a class="nav-link" href="{% url "login" %}">Login</a>
+    </li>
+
+    {% endif %}
+
+    </ul>
+
+
+    </div>
+  </nav>
+
+
+    <!-- CONTENT BLOCK -->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="blog_post">
+            {% block body_block %}
+            {% endblock %}
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+  </body>
+</html>

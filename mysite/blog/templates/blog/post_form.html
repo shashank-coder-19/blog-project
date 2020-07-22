@@ -1,0 +1,15 @@
+{% extends "blog/base.html" %}
+{% block body_block %}
+<h1>New Post</h1>
+<form class="post-form"  method="POST">
+  {% csrf_token %}
+  {{form.as_p}}
+  <button type="submit" class="save btn btn-primary">Submit</button>
+
+</form>
+<script>
+  var editor = new MediumEditor('.editable');
+
+</script>
+<!-- here script is for widjets which i used in forms.py -->
+{% endblock %}
